@@ -2,29 +2,29 @@
 
 Medium
 
-1161
+1129
 
-181
+164
 
 Add to List
 
 Share
-You are given the root of a binary tree where each node has a value in the range [0, 25] representing the letters 'a' to 'z'.
+You are given an m x n binary matrix grid.
 
-Return the lexicographically smallest string that starts at a leaf of this tree and ends at the root.
+A move consists of choosing any row or column and toggling each value in that row or column (i.e., changing all 0's to 1's, and all 1's to 0's).
 
-As a reminder, any shorter prefix of a string is lexicographically smaller.
+Every row of the matrix is interpreted as a binary number, and the score of the matrix is the sum of these numbers.
 
-For example, "ab" is lexicographically smaller than "aba".
-A leaf of a node is a node that has no children.
+Return the highest possible score after making any number of moves (including zero moves).
 
  
 
 Example 1:
 
 
-Input: root = [0,1,2,3,4,3,4]
-Output: "dba"
+Input: grid = [[0,0,1,1],[1,0,1,0],[1,1,0,0]]
+Output: 39
+Explanation: 0b1111 + 0b1001 + 0b1111 = 15 + 9 + 15 = 39
 */
 class Solution {
 public:
