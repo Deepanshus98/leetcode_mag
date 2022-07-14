@@ -27,3 +27,43 @@ Example 3:
 Input: numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]
 Output: [true,true]
 */
+class Solution {
+public:
+    void dfs_new(vector<vector<int>> &graph, vector<bool> &vis, int source, int c){
+        if(source != c){
+            graph[source][c] = 1;
+        }
+        if(!vis[c]){
+            vis[c] = true;
+            for(int i = 0; i < graph[c].size(); i++){
+                if(graph[c][i]){
+                    if(source != i){
+                        graph[source][i] = 1;
+                    }
+                    
+                    dfs_new(graph, vis, source, i);
+                }
+            }
+        }
+    }
+    vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& pre, vector<vector<int>>& queries) {
+        vector<vector<int>> graph(n, vector<int>(n, 0));
+        int i, j, u, v;
+        for(i = 0; i < pre.size(); i++){
+            graph[pre[i][0]][pre[i][1]] = 1;
+        }
+        
+        for(i = 0; i < n; i++){
+            vector<bool> vis(n, false);
+            dfs_new(graph, vis, i, i);
+            
+        }
+
+        
+        vector<bool> res(queries.size(), false);
+        for(i = 0; i < queries.size(); i++){    
+            res[i] = graph[queries[i][0]][queries[i][1]];
+        }
+        return res;
+    }
+};
